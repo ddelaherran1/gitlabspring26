@@ -22,8 +22,10 @@
 //Ivan Peralta
 //Dominic Carreto
 //Daniel de la Herran
+// stanley johnson
 //Cristobal Yepez
 //Andrew Michel
+
 
 
 
@@ -2901,7 +2903,62 @@ void cmeremikwu2(void)
 
 void jbInit()
 {
-	puts("jbRoom17");
+	int round;
+    	int lives = 5;
+    	int choice;
+    	int safe;
+
+    char *treasure[] =
+    {
+        "GOLD",
+        "SILVER",
+        "DIAMOND",
+        "BRONZE",
+        "WOOD"
+    };
+
+    puts("jbRoom17");
+    puts("Choose a chest to escape");
+
+    for(round = 1; round <= 5 && lives > 0; round++)
+    {
+        printf("\nRound %d of 5\n", round);
+
+        puts("\n--TREASURE ROOM--");
+
+        for(int i = 0; i < 5; i++)
+        {
+            printf("%d. %s\n", i + 1, treasure[i]);
+        }
+
+        safe = rand() % 5 + 1;
+
+        printf("CHOOSE A CHEST: ");
+        scanf("%d", &choice);
+
+        if(choice == safe)
+        {
+            printf("CORRECT!! YOU WON TREASURE\n");
+        }
+        else
+        {
+            printf("WRONG! THE WALLS START CLOSING IN!\n");
+            lives--;
+            printf("Lives left: %d\n", lives);
+        }
+    }
+
+    if(lives > 0)
+    {
+        printf("\nCONGRATS YOU ESCAPED!!\n");
+    }
+    else
+    {
+        printf("\nGAME OVER!!\n");
+    }
+
+
+		
 }
 
 // Case 45:
@@ -5033,6 +5090,7 @@ void hOsuna(void)
         printf("\nHAO\n");
 }
 
+
 //function prototype
 int getLuck(int luck[], int size);
 void JCgame(void)
@@ -5239,8 +5297,6 @@ void stanPush(void)
 {
 	puts(" S J \n");
 }
-
-
 
 void nnawshin()
 {
@@ -8359,6 +8415,79 @@ int iAmLazy(int choices)
   return option;
 }
 
+
+void stanPush(void)
+{
+        puts(" S J \n");
+
+        char *stanRooms[5] = {"forest", "cave", "river", "castle", "Milo's room" };
+
+        int stanVisits[5] = {0}, stanChoice, stanRandy;
+
+        do 
+	{
+
+        	printf("\n=== stanley's room ===\n");
+
+        	for(int i = 0; i < 5; i++) 
+		{
+	            	printf("%d. Enter %s\n", i + 1, stanRooms[i]);
+        	}
+
+        	printf("6. quit\n");
+
+        	printf("choose a room: ");
+        	scanf("%d", &stanChoice);
+
+        	if(stanChoice >= 1 && stanChoice <= 5) 
+		{
+
+        	    stanVisits[stanChoice - 1]++;
+
+		    printf("\nyou entered %s.\n", stanRooms[stanChoice - 1]);
+		    stanRandy = rand() % 3;
+
+            		if(stanRandy == 0) 
+			{
+                		printf("you found treasure\n");
+           		}
+            		else if(stanRandy == 1) 
+			{
+                		printf("a monster appeared\n");
+            		}
+            		else 
+			{
+                		printf("nothing happened\n");
+            		}
+
+        	}
+        	else if(stanChoice == 6) 
+		{
+
+            		printf("\n=== rooms visits ===\n");
+
+            		for(int i = 0; i < 5; i++) 
+			{
+
+                		printf("%s visited %d time(s)\n",
+                       		stanRooms[i],
+                       		stanVisits[i]);
+            		}
+
+            		printf("goodbye\n");
+        	}
+        	else 
+		{
+
+            		printf("invalid choice\n");
+        	}
+
+    	} while(stanChoice != 6);
+
+}
+
+
+
 void room31TwentyOneGame(void)
 {
 	printf("\nThe goal of the game is to get a hand closest to 21 without going over(bust) or else you'll lose.\n");
@@ -8572,3 +8701,4 @@ void room31DealerTurn(int used[], char deck[][30], int *dealerTotal,int dealerCa
 		printf("Dealer Busts!!!\n");
 	}
 }
+
