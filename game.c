@@ -1750,6 +1750,7 @@ void room5Danny(void)
 
 	}
 	puts("Now returning to the main menu...");
+}
 void hauntedHouse(void)
 {
 	srand(time(NULL));
