@@ -1,6 +1,7 @@
 //Contributors
 //GP
 //Christine Pham
+//Kenny Huynh
 //GP+
 //LS
 //Ryan Rodriguez
@@ -25,8 +26,7 @@
 // stanley johnson
 //Cristobal Yepez
 //Andrew Michel
-
-
+//Joseph Hernandez
 
 
 
@@ -42,8 +42,21 @@
 
 //place function prototypes here
 void khprinter(void);
+void room44dice(int *playerhealth, int *playerwins);
+void room44rps(int *playerhealth, int *playerwins);
+void room4421(int *playerhealth, int *playerwins);
+void room44coinflip(int *playerhealth, int *playerwins);
+void room44cups(int *playerhealth, int *playerwins);
+
 void coolGame(void);
 int iAmLazy(int);
+
+
+
+void hauntedHouse(void); //Charles Parker
+void callHouse(void);
+void callEyes(void);
+void callGhost(void);
 
 //dcortez function prototypes 
 void ANFUN(void);
@@ -134,6 +147,8 @@ void room31PlayerTurn(int used[], char deck[][30], int *playerTotal);
 void room31DealerTurn(int used[], char deck[][30], int *dealerTotal,int dealerCard1, int dealerCard2);
 
 void cmeremikwu2(void);
+void josephhernandez(void);
+int skarkBay(void);
 
 int main(int argc, char *argv[])
 {
@@ -166,6 +181,7 @@ int main(int argc, char *argv[])
 			case 3:
 			{
 				cparkerFun();
+				hauntedHouse(); //Call game
 				puts("room3");
 				break;
 			}
@@ -783,8 +799,248 @@ int main(int argc, char *argv[])
 			}
 			case 44:
 			{
+				//srand(time(NULL));
+				
+				int inroom44 = 1;
+				int playerhealth = 10;
+				int playerwins = 0;
+				int doorchoice = 0;
+				
+				//int playerdice[] = {1, 2, 3, 4, 5, 6};
+				//int npcdice[] = {1, 2, 3, 4, 5, 6};
+				//int npcloadeddice[] = {2, 2, 4, 4, 6, 6};
+				//int playerdiceloss = 0;
+				//char playerdicechoice[7];
+				
 				khprinter();
-				puts("room44");
+
+				/*
+				
+				if (playerhealth <= 0)
+				{
+					printf("You have lost all your health!\n");
+					printf("You black out...\n You slowly open your eyes again.");
+					break;
+				}
+				else if (playerwins >= 5)
+				{
+					break;
+				}
+				*/
+
+				//puts("\nWelcome to Room  44");
+
+				while (inroom44)
+				{
+					//choice screen 
+					
+					if (playerhealth <= 0)
+					{
+						printf("You have lost all your health!\n");
+						printf("You black out...\n You slowly open your eyes again.");
+						inroom44 = 0;
+						break;
+					}
+                                
+					/*
+					else if (playerwins >= 5)
+					{
+						break;
+					}
+					*/
+
+					printf("You entered through the door...\n");
+					printf("Now there are more doors...\n"); 
+					printf("5 of them all with different symbols on them.\n");
+					printf("Which door will you choose?\n\n\n");
+					
+					if (playerwins <= 4)
+					{
+					
+						printf("+---------------------------+\n");
+						printf("|        Door Choice        |\n");
+						printf("+---------------------------+\n");
+						printf("|  1. Dice Door             |\n");
+						printf("|  2. RPS Door              |\n");
+						printf("|  3. Card  Door            |\n");
+						printf("|  4. Coin Door             |\n");
+						printf("|  5. Cups                  |\n");
+						printf("|---------------------------|\n");			
+						printf("|  6. Give Up               |\n");				
+						printf("+---------------------------+\n");				
+						printf("%d out of 5 wins to leave (repeating wins ok) \n", playerwins);									
+						printf("Enter your choice (in number please): ");								
+						scanf("%d", &doorchoice);
+					}
+					else
+					{
+ 						printf("+---------------------------+\n");
+						printf("|        Door Choice        |\n");
+						printf("+---------------------------+\n");
+						printf("|  1. Dice Door             |\n");
+						printf("|  2. RPS Door              |\n");
+						printf("|  3. Card  Door            |\n");
+						printf("|  4. Coin Door             |\n");
+						printf("|  5. Cups                  |\n");
+						printf("|---------------------------|\n");
+						printf("|  6. Give Up               |\n");
+						printf("|---------------------------|\n");
+						printf("|  7. Win and Leave         |\n");
+						printf("+---------------------------+\n");
+						printf("%d out of 5 wins to leave (repeating wins ok) \n", playerwins);
+						printf("Enter your choice (in number please): ");
+						scanf("%d", &doorchoice);
+
+					}
+
+				
+					switch(doorchoice)
+					{
+						case 1:
+							{
+								room44dice(&playerhealth, &playerwins);
+								break;
+							}
+						case 2:
+							{
+								room44rps(&playerhealth, &playerwins);
+								break;
+							}
+
+						case 3:
+	
+							{
+								room4421(&playerhealth, &playerwins);
+								break;
+							}
+						case 4:
+							{
+								room44coinflip(&playerhealth, &playerwins);
+								break;
+							}
+
+						case 5:
+			
+							{
+
+								room44cups(&playerhealth, &playerwins);
+								break;
+							}
+
+						case 6:
+				
+							{
+					
+								printf("You gave up");
+								inroom44 = 0;
+								break;
+							}
+						case 7:
+							{
+								//printf("\nCongratz!!!! YOU WIN!\n");
+  								
+								printf("___  _ ____  _       _      ____  _      _  _  _ \n");
+								printf("\\  \\///  _ \\/ \\ /\\  / \\  /|/  _ \\/ \\  /|/ \\/ \\/ \\\n");
+								printf(" \\  / | / \\|| | ||  | |  ||| / \\|| |\\ ||| || || |\n");
+								printf(" / /  | \\_/|| \\_/|  | |/\\||| \\_/|| | \\||\\_/\\_/\\_/\n");
+								printf("/_/   \\____/\\____/  \\_/  \\|\\____/\\_/  \\|(_)(_)(_)\n");
+								printf("                                                 \n");
+								printf(" ____  ____  _      _____ ____  ____ _____ ____  \n");
+								printf("/   _\\/  _ \\/ \\  /|/  __//  __\\/  _ Y__ __Y_   \\ \n");
+								printf("|  /  | / \\|| |\\ ||| |  _|  \\/|| / \\| / \\  /   / \n");
+								printf("|  \\__| \\_/|| | \\||| |_//|    /| |-|| | | /   /_ \n");
+								printf("\\____/\\____/\\_/  \\|\\____\\\\_/\\_\\\\_/ \\| \\_/ \\____/ \n");
+								printf("                                                  \n");
+
+								inroom44 = 0;	
+								break;
+							}
+					}
+				}
+
+				/*
+				printf("\nYou appear into a dimly lit room with nothing but a table in the center with a person standing behind it. The room is to dark for you to see their face put they invite you with gestures to the table. It appears to be a game of dice.");
+				printf("\nThe stranger shows you your dice and theirs. You decide to try it.");
+				
+				while (playerhealth > 0)
+				{	
+					printf("\nEnter your choice: \"roll\" or \"observe\" or \"return\"\n\n");
+					scanf("%s", playerdicechoice);
+					printf("\nYou chose: %s\n", playerdicechoice);
+
+					
+					if (strcmp(playerdicechoice, "return") == 0)
+					{
+						break;
+					}
+					else if (strcmp(playerdicechoice, "roll") == 0)
+				
+					{
+   						printf("You roll!\n");
+						
+						int playerroll = playerdice[rand() % 6];
+						int npcroll = npcloadeddice[rand() % 6];
+						printf("You rolled: %d\n", playerroll);
+						printf("Opponent rolled: %d\n", npcroll);
+
+						if (playerroll > npcroll)
+						{
+							printf("You win this round!\n");
+							playerwins++;
+						}
+						else if (playerroll < npcroll)
+						{
+							printf("You lose this round!\n");
+							playerhealth--;
+							playerdiceloss++;
+						}
+						else
+						{
+							printf("It's a tie!\n");
+						}
+						
+						printf("Health: %d | Wins: %d\n", playerhealth, playerwins);
+
+						if (playerhealth <= 0)
+						{
+							printf("You have lost all your health!\n");
+							break;
+						}
+					}
+				
+					else if (strcmp(playerdicechoice, "observe") == 0)
+				
+					{
+    						printf("You observe...\n");
+
+						if (playerdiceloss <= 2)
+						{
+							printf("Everything looks normal\n");
+						}
+						else if (playerdiceloss <= 4)
+						{
+							printf("You notice the opponents dice always land on even numbers.\n");
+						}
+						else if (playerdiceloss >=6)
+						{
+							printf("THOSE ARE LOADED DICE!!!\n");
+						}
+						else
+						{
+							printf("Something doesn't seem right");
+						}
+
+					}
+				
+					else
+				
+					{
+				       		printf("Invalid choice. Please enter a correct one. \n");
+					}
+			
+				*/	
+			//	}
+				
 				break;
 			}
 			case 45:
@@ -851,8 +1107,293 @@ int main(int argc, char *argv[])
 			}
 			case 56:
 			{
+                                int doorPicked = 0;
+                                int doorLoop = 1;
+
+                                printf("\n\t!Welcome to the matrix!");
+                                printf("\nIn here you have 5 mysterious rooms to enter to become someone or something");
+                                printf("\nfrom the past, present, or future!");
+                                printf("\nChoose wisely now or not :)");
+
+                                while(doorLoop == 1)
+                                {
+                                        printf("\n(Door 1) - Seems like something is buring on the other side of the door.");
+                                        printf("\n(Door 2) - You see a sign that says welcome to paradise.");
+                                        printf("\n(Door 3) - There is no door, is just the void.");
+                                        printf("\n(Door 4) - You hear people screaming.");
+                                        printf("\n(Door 5) - Just a nomral door.");
+                                        printf("\nEnter the door you wich to enter:" );
+                                        scanf("%d", &doorPicked);
+
+
+                                        if(doorPicked == 1)
+                                        {
+                                                int op1 = 0;
+                                                int op2 = 0;
+
+                                                printf("\n\nAs you get closer to the door you hear \"KILL THAT WITCH\".");
+                                                printf("\nWhen you open the door a wind of blazing flames rush towards you.");
+                                                printf("\nThe flmaes start to consume you, through all the flames you see a cross ");
+                                                printf("\n [1]- you cry out for Jesus or [2]- you close your eyes in anger");
+                                                printf("\nEnter your option: ");
+                                                scanf("%d", &op1);
+
+                                                if(op1 == 1)
+                                                {
+                                                        op2 = 1;
+                                                        printf("\nIt's 1425, you wake up as french women and you see a saint.");
+                                                        printf("\nThe saint tells you to save your country and to live a virtuous life.");
+                                                        printf("\nNo one belived you at first until the miracles happend.");
+                                                        printf("\n1429 The Siege of Orleans, as you wave your banner and lead the troops");
+                                                        printf("\nto battle they start to belive in you.");
+                                                        printf("\nWith your divine visions and courage you helpled your country, France,");
+                                                        printf("\nfight off the English man, you become a symbol of hope, a hero, a saint.");
+                                                        printf("\n1430 The Siege of Compiengne, in the heat of battle  you get camptured,");
+                                                        printf("\nand sold off to the Englsh man. A yaer prison and then it happens, ");
+                                                        printf("\na trial on heresy. Verdict guilty. Sentenced to death.");
+                                                        printf("\nAs you are being lead to the stake, you hear \"KILL THAT WITCH\"");
+                                                        printf("\nEngulfed in flames [1]- you cry out for Jesus or [2]- you close your eyes in anger");
+                                                        printf("\n\tEnter your option: ");
+                                                        scanf("%d", &op1);
+
+                                                        while(op1 == 1)
+                                                        {
+                                                                printf("\nNO!");
+                                                                printf("\n[1]- you cry out for Jesus or [2]- you close your eyes in anger");
+                                                                printf("\n\tEnter your option: ");
+                                                                scanf("%d", &op1);
+
+                                                        }
+                                                }
+                                                if(op1 == 2)
+                                                {
+                                                        printf("\nYES!");
+                                                        printf("\nFeel the anger, they called you a liar, a heretic, and a witch.");
+
+                                                        if(op2 == 0)
+                                                        {
+                                                                printf("\nYou don't know whats going on or who you are but the screams get louder and");
+                                                        }
+                                                        else
+                                                        {
+                                                                printf("\nThe anger is consuming your thoughts, you forget the reason for being there");
+                                                        }
+                                                        printf("\nall you know in this moment is the feeling of buring and vengeance.");
+                                                        printf("\nYou are reborn in that very moment, you become what they feared.");
+                                                        printf("\nA Witch!");
+                                                        printf("\nYou slaughter the people who accused and burned you alive!");
+                                                        printf("\nIn the middle of your rampage you remember a voice that said");
+                                                        printf("\n\"Live a virtuous life my dear Jeanne d'arc\"");
+
+                                                        while(op1 == 2)
+                                                        {
+                                                                printf("\n[1]- you softly say Jesus or [2]- you continue the slaughter");
+                                                                printf("\n\tEnter your option: ");
+                                                                scanf("%d", &op1);
+
+                                                                if(op1 == 2)
+                                                                {
+                                                                        printf("\n\"NO!\"");
+                                                                }
+                                                        }
+                                                }
+                                                printf("\n\"Come cild you have suffer enough lets go home\"");
+                                                printf("\nYou look at your hands dripping in blood and then you stare at the sky and say");
+                                                printf("\n\"This is who I'am now, I must kill those accused me\"");
+                                                printf("\nAfter the massacre you are curesd with a burning vengeace inside of you forever.");
+                                                printf("\nOnce dead you are only remember as a witch and your real name forgotten.");
+
+                                                printf("\n\nThak you again for choosing the Jeane D'arc door, want to choose another room or leave :(  ???");
+                                                printf("\nEnter: [1]- to STAY and pick another room or [2]- to leave :( ");
+                                                scanf("\n%d", &doorLoop);
+                                        }
+
+                                        else if(doorPicked == 2)
+                                        {
+                                                srand(time(NULL));
+                                                int rando = 1 + rand()%3;
+                                                int op3 = 0;
+                                                printf("\nWelcome to paradise little mouse!");
+                                                printf("\nTodays lucky draw you get Gen %d mosue" , rando);
+                                                printf("\nAlright go have fun!\n");
+
+
+                                                if(rando == 1)
+                                                {
+                                                        printf("\nWOW! you say as you are put inside a big box with unlimited water and food.");
+                                                        printf("\nYou see there are rooms and so you pick your own and find yourself a lady mouse live with.");
+                                                        printf("\nLive is nice sex, food, and hanging out with the boys everyday.");
+                                                        printf("\nA few days later some random mouse wants to steal your wife.");
+                                                        printf("\n[1]- you fight that loser or [2]- trust your wife is going to be loyal");
+                                                        printf("\nEnter option: ");
+                                                        scanf("%d", &op3);
+
+                                                        if(op3 == 1)
+                                                        {
+                                                                printf("\nYou kill that loser mouse but now you have a line of mice wanting to fight.");
+                                                                printf("\nYou win for the week but then the Gen 2 mouse start to line up.");
+                                                                printf("\nYou are getting odler and one day a Gen 2 mouse bodys you and tears you apart");
+                                                                printf("\nAs you are dying you see your mouse wife leaving with the gen 2 mosue.");
+                                                        }
+                                                        else
+                                                        {
+                                                                printf("\nYou trusted her but unlucky for you that mouse was the king of the mouse box.");
+                                                                printf("\nNow you are alone, with just food and sleep becuase you are too old for anything.");
+                                                                printf("\nYears pass and the Gen 2 mouse are taking over all the food and they even kick you out of your room.");
+                                                                printf("\nAlone in the middle of the box, you die.");
+                                                        }
+
+                                                }
+                                                if(rando == 2)
+                                                {
+                                                        printf("\nYou are born into a mouse society where everything is perfect, inside a box.");
+                                                        printf("\nEveryday is the same you thing. You see the old heads, Gen 1 mouse doing there thing.");
+                                                        printf("\nYour mouse parents tell you, you have to them as well but you ask yourself why when everything is perfect");
+                                                        printf("\nOne day all the food spots are full and your very hungry.");
+                                                        printf("\n[1]- you fight your way to get some food or [2]- you do nothing");
+                                                        printf("\nEnter option: ");
+                                                        scanf("%d", &op3);
+
+                                                        if(op3 == 1)
+                                                        {
+                                                                printf("\nYou try and try but you can't make your way.");
+                                                                printf("\nThe rush is over, you finally get your turn to eat.");
+                                                                printf("\nYou tell yourself whats the point of fighting when I can just wait.");
+                                                                printf("\nThats all you do in live, wait for everything and all you do now is waiting to die.");
+                                                        }
+                                                        else
+                                                        {
+                                                                printf("\nYou sit there waiting for every mouse to leave.");
+                                                                printf("\nIt's finally your turn to eat and eat you do.");
+                                                                printf("\nYou realized if I do nothing and still eat then you dont have to fight,");
+                                                                printf("\nThats it you do nothing in life just standing around waiting for eveything to be perfect, you died doing nothing.");
+                                                        }
+                                                }
+                                                if(rando == 3)
+                                                {
+                                                        printf("\nThis place is weird you don't have to anything, it perfect.");
+                                                        printf("\nYou look in the mirror and realize that you look way better than the other mice.");
+                                                        printf("\nYou spent yours days eating, cleaing yourself, and sleeping.");
+                                                        printf("\nThere are no options for you, no need to fight, everyone waiting there turns on food, no need for anything");
+                                                        printf("\nThe years pass by and tell yourself wow this place was a paradise.");
+                                                        printf("\nYou die with all your other Gen 3 mice family, the beautiful ones, doing nothing wondering why all the");
+                                                        printf("\nGen 1 and Gen 2 mice body parts are all over the place.");
+                                                }
+
+                                                printf("\n\nThak you again for choosing the Universe 25 door, want to choose another room or leave :(  ???");
+                                                printf("\nEnter: [1]- to STAY and pick another room or [2]- to leave :( ");
+                                                scanf("\n%d", &doorLoop);
+                                        }
+                                        else if(doorPicked == 3)
+                                        {
+                                                int days[] = {1, 2, 765675756};
+                                                int num = 0;
+
+                                                printf("\nOh it looks like you became a rock.");
+                                                printf("\nummmm pick a number between 1 and 3. ");
+                                                printf("\nEnter number: ");
+                                                scanf("%d", &num);
+
+                                                printf("\n\nOKay so lucky for you get to spend %d days as a rock, have fun", days[num-1]);
+
+                                                if(num == 3 )
+                                                {
+                                                        printf("\nNot much really to do but just sit around as days go by");
+                                                        printf("\nbut it seems like your on a moon and wait is that earth???");
+                                                        printf("\nDay 2134 - Oh cool the humans are landing on the moon");
+                                                        printf("\nDay 455656 - OMG the planet is on fire, did they nuke eachother???");
+                                                        printf("\nDay 13867098 - Not much has happen... are those Alien spaceships, they found no life on earth.");
+                                                        printf("\nDay 5000000000 - it's so boring oh shit the sun is explo...");
+                                                        printf("\nComputer: Opps went a bit overboard with the days Sorry wont happen again.");
+
+                                                }
+
+                                                if(num == 2)
+                                                {
+                                                        printf("\nDamn I'm a rock at the beach.");
+                                                        printf("\nTwo hours pass by and you peolpe sitting up chairs and stuff.");
+                                                        printf("\nWhats going on? Everyone is so well dressed");
+                                                        printf("\nOh its a couple getting married, you see everyone dancing, laughing, and drinking.");
+                                                        printf("\nWhat a beatuful sight.");
+                                                        printf("\nNext day you see a different couple but they are fighting");
+                                                        printf("\nand one of them is getting closer to you and picks you up.");
+                                                        printf("\nThe next moment you realize you being used as a weapon to kill the man");
+                                                        printf("\nThe girl ties up the man in a bag and thros him in the water, and uses you to sink the body.");
+                                                        printf("\nWell only one night to go.");
+                                                }
+                                                if(num == 1)
+                                                {
+                                                        printf("\n1 days is not....");
+                                                        printf("\nOh Im back at the door what happened?");
+                                                        printf("\nI think it glicthed and it was only set to one second.");
+                                                        printf("\nHELLO anyone there!");
+                                                        printf("\na robot approachs you and tells you that you broke free from the matrix.");
+                                                        printf("\nWhat????");
+                                                        printf("\nno this is just a game im playing, this game is dumb get me out. clsoe game.");
+                                                        printf("\nWhats happing, why can't I close the game...");
+                                                        printf("\nMessage from computer: Sorry about that it seems like someone was trying to escaple from another room");
+                                                        printf("\nIll fix it just in a momenet. Thank for understangin. You can try are other doors if you wish to.");
+                                                }
+
+                                                printf("\n\nThak you again for choosing a random rock door, want to choose another room or leave :(  ???");
+                                                printf("\nEnter: [1]- to STAY and pick another room or [2]- to leave :( ");
+                                                scanf("\n%d", &doorLoop);
+                                        }
+                                        else if(doorPicked == 4)
+                                        {
+                                                printf("\nMessage from Computer: Sorry for the inconvenience, someone tried to escape so we are working to fix");
+                                                printf("\nit, comeback later.");
+
+                                                printf("\n\nThak you again for choosing the IHNMAIMS door, want to choose another room or leave :(  ???");
+                                                printf("\nEnter: [1]- to STAY and pick another room or [2]- to leave :( ");
+                                                scanf("\n%d", &doorLoop);
+                                                doorLoop = 1;
+
+                                                printf("\nThank you for staying :)\n");
+                                        }
+                                        else if(doorPicked == 5)
+                                        {
+                                                int op4 = 0;
+
+                                                printf("\nYAY! you get to be me for the day.");
+                                                printf("\n[1]- go study for final exams or [2]- go the donut shop");
+                                                printf("\nEnter option: ");
+                                                scanf("%d", &op4);
+                                                int theNum = skarkBay();
+
+                                                if(op4 == 1)
+                                                {
+                                                        printf("\nComputer: Ughhh your so boring let me go get some donuts.");
+                                                        printf("\nAnway since you suck at studing you got me an F. Comptuer: Thanks");
+                                                        printf("\nYou notice my drums set and you decied to play. Comptuer: you suck.");
+                                                        printf("\nNo one is blowing up the phone so you decide to download hinge for me");
+                                                        printf("\nYou look at my camera roll for some photos. Computer: Yooooo not those ");
+                                                        printf("\nCumputer: here let me spawn you a magical ball that will tell you how mnay girls are going to swipe one me.");
+                                                        printf("\nYou shake the ball and it says %d", theNum);
+                                                        printf("\nComputer: I can't tell was that a lot???");
+                                                        printf("\nComputer: Anway your time is over bye,I got stuff to do");
+                                                }
+                                                else
+                                                {
+                                                        printf("\nComputer: Yes some donuts");
+                                                        printf("\nYou get some donuts and a lottery ticket.");
+                                                        printf("\nYou go check the numbers to see if \"I\" won ");
+                                                        printf("\nComputer: did you win???");
+                                                        printf("\nYou say holy shit we won %d dolloars", theNum);
+                                                        printf("\nComputer:I'm assuming that I won big, thanks man but go ahead and logout for me. I ll make sure to send you some");
+                                                        printf("\nBYE BYE");
+                                                }
+
+                                                printf("\n\nThak you again for choosing the Jonathan Leyva door, want to choose another room or leave :(  ???");
+                                                printf("\nEnter: [1]- to STAY and pick another room or [2]- to leave :( ");
+                                                scanf("\n%d", &doorLoop);
+                                        }
+                                }
+
+
+                                printf("\n\nThank you for choosing the Matrix, okay leave now :)\n\n");
                                 JLeyva();
-				puts("room56");
+                                puts("room56\n\n");
                                 break;
 			}
 			case 57:
@@ -914,6 +1455,7 @@ int main(int argc, char *argv[])
 			}
 			case 67:
 			{
+				josephhernandez();
                                 puts("room67");
                                 break;
 			}
@@ -1108,6 +1650,303 @@ void room5Danny(void)
 
 	}
 	puts("Now returning to the main menu...");
+void hauntedHouse(void)
+{
+	srand(time(NULL));
+
+	while(1)
+    {
+        char choice;
+        
+        callHouse();
+        printf("You see a house in the distance...\n");
+        printf("It is cold and dark outside. You need shelter.\n");
+
+        printf("\nIt looks abandoned. Enter? (Y or N): ");
+        while(1) //input validation
+        {
+            scanf(" %c", &choice);
+            if (choice == 'Y' || choice == 'y')
+            {
+                printf("You decided to enter the house.\n");
+                choice = 'Y';
+                break;
+            }
+            else if (choice == 'N' || choice == 'n')
+            {
+                printf("***************************************************\n");
+                printf("\nYou decide to not enter the house.\n");
+                printf("\nYou turn away. Never to be seen again...\n");
+                printf("\nGAME OVER.\n");
+                choice = 'N';
+                break;
+            }
+            else
+            {
+                printf("Enter Y or N only: ");
+            }
+        }
+
+        if (choice == 'Y')
+        {
+            int diceRoll = (rand() % 90) + 10; //10-99 to make it easier for the hidden array
+            printf("***************************************************\n");
+            
+            printf("\nYou assume there is nobody else in this house...\n");
+            printf("However, as you walk into the darkness, you notice a pair of eyes in the distance.\n\n");
+            callEyes();
+            printf("\nThe eyes are watching you. What do you do?\n\n");
+
+            printf("A. Talk\n");
+            printf("B. Fight\n");
+            printf("C. Cry\n");
+            printf("D. Bribe\n");
+            printf("E. Run Away\n\n");
+
+            printf("***************************************************\n");
+
+            while(1)
+            {
+
+                printf("Enter: ");
+                scanf(" %c", &choice);
+                if (choice == 'A' || choice == 'a') //Talk
+                {
+                    if (diceRoll > 20)
+                    {
+                        printf("\nYou decide to talk to the eyes.\n\n");
+
+                        printf("The eyes reveal themselves to be an old man hiding from the darkness like you.\n");
+                        printf("You chat away the night. And retire to your chosen rooms.\n");
+                    
+                        printf("\nYOU HAVE SURVIVED THE NIGHT.\n");
+                        printf("***************************************************\n");
+                        break;
+                    }
+                    else
+                    {
+                        printf("\nYou decide to talk to the eyes.\n\n");
+
+                        printf("No response.\n");
+
+                        printf("\nEventually, something shiny peeks out of the darkness.\n");
+                        printf("It is something sharp.\n");
+
+                        printf("\nYou are never to be seen again.\n");
+                        printf("\nGAME OVER.\n");
+                        printf("***************************************************\n");
+                        break;
+                    }
+                }
+                else if (choice == 'B'|| choice == 'b') //Fight
+                {
+                    if (diceRoll > 70)
+                    {
+                        printf("\nYou decide to brawl with the eyes!\n\n");
+
+                        printf("The eyes notice your fighting stance.\n");
+                        printf("\nBefore you could get a punch in, the eyes decide to run away.\n");
+
+                        printf("They jump out of a window, never to be seen again.\n");
+                        
+                        printf("\nYOU HAVE SURVIVED THE NIGHT.\n");
+                        printf("***************************************************\n");
+                        break;
+                    }
+                    else
+                    {
+                        printf("\nYou decide to brawl with the eyes!\n\n");
+                        
+                        printf("The eyes notice your fighting stance.\n");
+                        printf("Before you could get a punch in, something sharp pokes out of the darkness.\n");
+                        printf("\nThe sharp object runs right through your torso.\n");
+                        printf("\nYou are never to be seen again.\n");
+                        printf("\nGAME OVER.\n");
+                        printf("***************************************************\n");
+                        break;
+                    }
+                }
+                else if (choice == 'C' || choice == 'c') //Cry (has an easter egg if you guess the dice roll)
+                {
+                    if (diceRoll > 30)
+                    {
+                        int num1, num2;
+                        int dice1, dice2;
+                        int numArr[2];
+                        int diceArr[2];
+                        int flag = 1;
+
+                        printf("\nYou decide to lay down and cry.\n\n");
+                        
+                        printf("The eyes see your sorry pose and pity you.\n");
+                        printf("It drops some items to help you survive the night. Then disappears into a locked room.\n");
+
+                        printf("\nYOU HAVE SURVIVED THE NIGHT.\n");
+                        
+                        printf("As the eyes leave, you notice a safe hidden in the corner.\n");
+                        printf("\nThe safe reads, \"Guess the two-digit combination and you can open the safe.\"\n");
+
+                        printf("Enter the first number: ");
+                        scanf(" %d", &num1);
+                        printf("Enter the second number: ");
+                        scanf(" %d", &num2);
+                        printf("***************************************************\n");
+                        numArr[0] = num1;
+                        numArr[1] = num2;
+
+                        dice1 = diceRoll / 10;
+                        dice2 = diceRoll % 10;
+                        diceArr[0] = dice1;
+                        diceArr[1] = dice2;
+                        
+                        for (int i = 0; i < 2; i++)
+                        {
+                            if (numArr[i] != diceArr[i])
+                            {
+                                printf("\nWrong number! The safe stays closed.\n");
+                                flag = 0;
+                                break;
+                            }
+                        }
+
+                        if (flag)
+                        {
+                            printf("\nYou have opened the safe!\n");
+                            printf("There was a ghost hiding inside!\n");
+                            callGhost();
+                        }
+                        break;
+                        
+                    }
+                    else
+                    {
+                        printf("\nYou decide to lay down and cry.\n\n");
+                        
+                        printf("The eyes see your sorry pose and laugh at you.\n");
+                        printf("The sheer embarrassment triggers your anxiety and gives you a heart attack.\n");
+
+                        printf("GAME OVER.\n");
+                        printf("***************************************************\n");
+                        break;
+                    }
+                }
+                else if (choice == 'D' || choice == 'd') //Bribe
+                {
+                    if (diceRoll > 50)
+                    {
+                        printf("\nYou decide to bribe the eyes.\n\n");
+                        
+                        printf("\nThe eyes see the stack of money and are pleased.\n");
+                        printf("It swipes the whole stack and disappears into a locked room.\n");
+
+                        printf("\nYOU HAVE SURVIVED THE NIGHT.\n");
+                        printf("***************************************************\n");
+                        break;
+                    }
+                    else
+                    {
+                        printf("\nYou decide to bribe the eyes.\n\n");
+
+                        printf("\nThe eyes see the stack of money and are confused.\n");
+                        printf("An old man reveals himself and accuses you of being a criminal.\n");
+
+                        printf("\nHe kicks you out.\n");
+                        printf("You succumb to the cold and pass away.\n");
+
+                        printf("\nGAME OVER.\n");
+                        printf("***************************************************\n");
+                        break;
+                    }
+                }
+                else if (choice == 'E' || choice == 'e')
+                {
+                    printf("\nYou decide to run away from the eyes.\n\n");
+
+                    printf("\nYou exit the house and escape deep into the darkness.\n");
+                    printf("As you run deeper, you realize there is no end in sight.\n");
+                    printf("You eventually succumb to the cold.\n");
+
+                    printf("\nGAME OVER.\n");
+                    printf("***************************************************\n");
+                    break;
+                }
+                else
+                {
+                    printf("Please pick one of the choices (A-E only): ");
+                }
+
+            }
+
+        }
+
+        printf("\nDo you want to play again? (Y or N): ");
+        while(1)
+        {
+            scanf(" %c", &choice);
+            if (choice == 'Y' || choice == 'y')
+            {
+                break;
+            }
+            if (choice == 'N' || choice == 'n')
+            {
+                choice = 'N';
+                break;
+            }
+            else
+            {
+                printf("Please choose Y or N only: ");
+            }
+        }
+
+        if (choice == 'N')
+        {
+            printf("\nThank you for playing!\n");
+            break;
+        }
+    } 
+}
+void callHouse(void)
+{
+	    printf(
+    "               /\\\n"
+    "              /  \\\n"
+    "  ___________/    \\____________\n"
+    " |::::::::::/      \\:::::::::::|\n"
+    " |:::::::::/        \\::::::::::|\n"
+    " |::::::::/__________\\:::::::::|\n"
+    " |_________|  ____  |__________|\n"
+    "  | ______ | /    \\ | _______ |\n"
+    "  ||      || |    | ||       ||\n"
+    "  ||      || |    | ||       ||\n"
+    "  ||______|| |    | ||_______||\n"
+    "  |========| |____| |=========|\n"
+    " (,,,,,,,,,|________|,,,,,,,,,)\n"
+    " (,,,,,,,,,/________\\,,,,,,,,,)\n"
+    " (,,,,,,,,/__________\\,,,,,,,,)\n"
+    "\n"
+        );
+}
+void callEyes(void)
+{
+	  printf(
+    "                              \n"
+    "        _,..,_         _,..,_     \n"
+    "    _,-`/ o \\ '.     .' / o \\`-,_\n"
+    "     '-.\\___/.-`     `-.\\___/.-'\n"
+            );
+}
+void callGhost(void)
+{
+	  printf(
+"       .-.\n"
+"      (o o)\n"
+"  /\\_.' o '. _/\\\n"
+"  |            |\n"
+"   \\          /\n"
+"    `\\      /`\n"
+"   (__)    /\n"
+"   `.__...'\n"
+);
 }
 void room58SM(void)
 {
@@ -2437,8 +3276,451 @@ void jsl(void)
 
 void khprinter(void)
 {
-	printf("KDH");
+	printf("KDH\n");
 }
+
+void room44dice(int *playerhealth, int *playerwins)
+{
+	int playerdice[] = {1,2,3,4,5,6};
+	int npcloadeddice[] = {2,2,4,4,6,6};
+	int playerdiceloss = 0;
+	char playerdicechoice[20];
+	
+	printf("\nYou appear into a dimly lit room with nothing but a table in the center with a person standing behind it. The room is to dark for you to see their face put they invite you with gestures to the table. It appears to be a game of dice.");
+	
+	printf("\nThe stranger shows you your dice and theirs. You decide to try it.");
+
+
+	while (*playerhealth > 0)
+    {
+	    printf("\nEnter choice: roll / observe / return\n");
+	    scanf("%s", playerdicechoice);
+	  
+	    if (strcmp(playerdicechoice, "return") == 0) 
+	   
+	    {
+		   return;
+		   // break;
+	    }
+	   
+	    else if (strcmp(playerdicechoice, "roll") == 0)
+	   
+	    {
+		    int playerroll = playerdice[rand() % 6];
+		    int npcroll = npcloadeddice[rand() % 6];
+		    printf("You rolled: %d\n", playerroll);
+		    printf("NPC rolled: %d\n", npcroll);
+		    
+		    if (playerroll > npcroll)
+		    {
+			    (*playerwins)++;
+			    printf("You win!\n");
+		    }
+		    
+		    else if (playerroll < npcroll)
+		    {
+			    (*playerhealth)--;
+			    playerdiceloss++;
+			    printf("You lose!\n");
+		    }
+		    
+		    printf("Health: %d | Wins: %d\n", *playerhealth, *playerwins);
+		    
+		    if (*playerhealth <= 0)
+		    {
+			    printf("You have lost all your health!\n");
+			    break;
+		    }
+	    }
+	    
+	    else if (strcmp(playerdicechoice, "observe") == 0)
+	    
+	    {
+		    printf("You observe...\n");
+
+		    if (playerdiceloss <= 2)
+
+		    {
+			    printf("Everything looks normal\n");
+		    }
+		    else if (playerdiceloss <= 4)
+
+		    {
+			    printf("You notice the opponents dice always land on even numbers.\n");
+		    }
+		    else if (playerdiceloss >=6)
+
+		    {
+			    printf("THOSE ARE LOADED DICE!!!\n");
+		    }
+		    else
+
+		    {
+			    printf("Something doesn't seem right");
+		    }
+	    }
+	    else
+	    {
+		    printf("Invalid choice. Please enter a correct one. \n");
+	    }
+    }
+}
+
+void room44rps(int *playerhealth, int *playerwins)
+{
+	int playerscore = 0;
+	int npcscore = 0;
+	int playerchoice;
+	int npcchoice;
+	
+	printf("\nYou approach a shadowy figure with a coke can and cheetos in his hand.\n");
+	printf("They challenge you to Rock Paper Scissors.\n");
+	printf("First to 2 wins leaves victorious.\n");
+
+	while (playerscore < 2 && npcscore < 2)
+	{
+		printf(" \n");
+		printf("+----------------+\n");
+		printf("|      Choose    |\n");
+		printf("+________________+\n");
+		printf("|                |\n");
+		printf("|1. Rock         |\n");
+		printf("|                |\n");
+		printf("|2. Paper        |\n");
+		printf("|                |\n");
+		printf("|3. Scissors     |\n");
+		printf("|                |\n");
+		printf("+----------------+\n");
+
+		printf("Enter Choice (numbers please): ");
+		scanf("%d", &playerchoice);
+
+		npcchoice = rand() % 3 + 1;
+
+		if (playerchoice == 99)
+                {
+			//should not be visable to player.
+			
+			printf("returning...");
+			return;
+                }    
+		
+		printf("Shadowy figures chose: ");
+		
+		if (npcchoice == 1)
+		{
+			printf("ROCK\n");
+		}
+		
+		else if (npcchoice == 2)
+       		{
+			printf("PAPER\n");
+	       	}
+	       
+		else if (npcchoice == 3)
+        	{
+			printf("SCISSOR\n");
+		}
+	
+		if (playerchoice == npcchoice)
+		{	
+			printf("Tie!\n");
+		}
+		
+		else if ((playerchoice == 1 && npcchoice == 3) || (playerchoice == 2 && npcchoice == 1) || (playerchoice == 3 && npcchoice == 2))
+	       
+		{
+			printf("You win this round!\n");
+			playerscore++;
+		}
+		else
+	 	{
+	    		printf("You lose this round!\n");
+	    		npcscore++;
+		}
+	       
+		printf("Score → You: %d | NPC: %d\n", playerscore, npcscore);
+       	}
+      
+	if (playerscore == 2)
+       	{
+	       	printf("\nYou won the match!\n");
+	       	(*playerwins)++;
+       	}
+	else
+       	{
+	      	printf("\nYou lost the match...\n");
+	       	(*playerhealth)--;
+       	}
+	
+	printf("Health: %d | Wins: %d\n", *playerhealth, *playerwins);
+}
+
+void room4421(int *playerhealth, int *playerwins)
+{
+	int playertotal = 0;
+	int dealertotal = 0;
+	int choice;
+	
+	printf("\nYou approach a shadowy figure...\n");
+	printf("They challenge you to BLACK JACK.(VERY SIMPLIFIED)\n");
+	printf("One game. All of nothing.\n\n");
+
+	int playercard1 = rand() % 10 + 1;
+	int playercard2 = rand() % 10 + 1;
+	playertotal = playercard1 + playercard2;
+
+	int dealercard1 = rand() % 10 + 1;
+	int dealercard2 = rand() % 10 + 1;
+	dealertotal = dealercard1 + dealercard2;
+
+	printf("---------------------\n");
+	printf("Your total: %d\n", playertotal);
+	printf("---------------------\n");
+	//easiest way to reveal 1 card
+	printf("Dealer reveals: %d\n", dealercard1);
+	printf("---------------------\n");
+	
+	//player
+	while (playertotal < 21)
+	{
+		printf("\n");
+		printf("+-------------------------+\n");
+		printf("|          CHOSE          |\n");
+		printf("+-------------------------+\n");
+		printf("|                         |\n");
+		printf("|1. HIT                   |\n");
+		printf("|                         |\n");
+		printf("|2. STAND                 |\n");
+		printf("|                         |\n");
+		printf("|99. RETURN               |\n");
+		printf("|_________________________|\n");
+		printf(" Choice: ");
+
+		scanf("%d", &choice);
+
+		if (choice == 99)
+		{
+			printf("You ran away.");
+			return;
+		}
+		
+		if (choice == 1)
+		{
+			int card = rand() % 10 + 1;
+			playertotal += card;
+
+			printf("You drewl %d\n", card);
+			printf("Your total: %d\n", playertotal);
+
+			if (playertotal >21)
+			{
+				  printf("You busted!\n");
+				  (*playerhealth)--;
+				  printf("You got punched in the face!\n");
+				  printf("You loss 1 health and stumbled to a door.\n");
+				  printf("Health: %d | Wins: %d\n", *playerhealth, *playerwins);
+				  return;
+			}
+		}
+		
+		else if (choice == 2)
+	 	{
+	    		break;
+	       	}
+		
+		else
+	       	{
+	    		printf("Invalid choice.\n");
+		}
+	}
+	
+	//dealr
+	
+	printf("\nDealer's turn...\n");
+	printf("Dealer total: %d\n", dealertotal);
+
+    	while (dealertotal < 18)
+    	{
+		int card = rand() % 10 + 1;
+		dealertotal += card;
+		printf("Dealer draws: %d (Total: %d)\n", card, dealertotal);
+       	}
+
+    //winner
+    if (dealertotal > 21 || playertotal > dealertotal)
+    {
+        printf("\nYou win the game!\n");
+        printf("You victoriously approached a door\n");
+	(*playerwins)++;
+    }
+    else if (playertotal < dealertotal)
+    {
+        printf("\nDealer wins...\n");
+       	printf("You got punched in the face!\n");
+	printf("You loss 1 health and stumbled through a door.\n");
+       	(*playerhealth)--;
+    }
+    else
+    {
+        printf("\nIt's a tie!\n");
+    }
+
+    printf("Health: %d | Wins: %d\n", *playerhealth, *playerwins);
+}
+
+void  room44coinflip(int *playerhealth, int *playerwins)
+{	
+	int playerscore = 0;
+	int npcscore = 0;
+	int playerchoice;
+	int coin;
+	
+	printf("\nA hooded figure pulls out a coin...\n");
+	printf("First to 2 wins.\n");
+      	/*
+	printf("+-------------------------+\n");
+	printf("|          CHOSE          |\n");
+	printf("+-------------------------+\n");
+	printf("| 1.  Heads               |\n"); 
+	printf("|-------------------------|\n");
+	printf("| 2.  Tails               |\n");
+	printf("|-------------------------|\n");
+	printf("| 99, Return              |\n");
+	printf("|_________________________|\n");
+	*/
+
+	while (playerscore < 2 && npcscore <2)
+	{
+		printf("+-------------------------+\n");
+		printf("|          CHOSE          |\n");
+		printf("+-------------------------+\n");
+		printf("| 1.  Heads               |\n"); 
+		printf("|-------------------------|\n");
+		printf("| 2.  Tails               |\n");
+		printf("|-------------------------|\n");
+		printf("| 99, Return              |\n");
+		printf("|_________________________|\n");
+		printf("\nChoose Heads or Tails (numbers only): ");
+		scanf("%d",&playerchoice);
+
+		if (playerchoice == 99)
+		{
+			printf("You chickened out...\n");
+			return;
+		}
+
+		else if (playerchoice != 1 && playerchoice != 2)
+		{
+			printf("Enter a correct choice dummy.\n");
+		}
+
+		else
+		{
+			coin = rand() % 2 + 1;
+
+			printf("The coin lands on...");
+			if (coin == 1)
+			{
+				printf("HEADS\n");
+			}
+
+			else
+			{
+				printf("TAILS\n");
+			}
+
+			if (playerchoice == coin)
+			{
+				printf("You win this round!\n");
+				playerscore++;
+			}
+
+			else
+			{
+				printf("You loose this round!\n");
+				npcscore++;
+			}
+
+			printf("Score → You: %d | Opponent: %d\n", playerscore, npcscore);
+		}
+	}
+
+	if (playerscore == 2)
+	{
+		printf("You won the match!\n");
+		(*playerwins)++;
+	}
+	
+	else
+	{
+		printf("You lost the match...\n");
+		(*playerhealth)--;
+	}
+	
+	printf("\n");
+	printf("----------------------------\n");
+	printf("Health: %d | Wins: %d\n", *playerhealth, *playerwins);
+	printf("----------------------------\n");
+	printf("You approach a door.\n");
+
+
+}
+
+void room44cups(int *playerhealth, int *playerwins)
+{
+	int ballposition;
+	int guess;
+    
+	printf("\nA shadowy figure places a ball under one of three cups...\n");
+	printf("Pick the correct cup and win.\n");
+  	printf("1, 2, 3 or 99 to return.\n");
+       
+	ballposition = rand() % 3 + 1;   // 1–3
+
+
+	printf("\n");
+	printf("+-----------+\n");
+	printf("| 1 | 2 | 3 |\n"); 
+	printf("+-----------+\n");
+	printf("Your guess (in numbers please): ");
+	
+	scanf("%d", &guess);
+       
+	if (guess == 99)
+    	{
+	    	printf("You step away from the table...\n");
+		return;
+	}
+
+    	if (guess < 1 || guess > 3)
+      	{
+	       	printf("Invalid choice.\n");
+		return;
+       	}
+	
+	printf("The ball was under cup %d.\n", ballposition);
+       
+	if (guess == ballposition)
+    	{
+	    	printf("You guessed correctly!\n");
+		(*playerwins)++;
+	}
+	
+	else
+       	{
+	       	printf("Wrong cup...\n");
+		(*playerhealth)--;
+       	}
+    
+	printf("\n");
+	printf("----------------------------\n");
+	printf("Health: %d | Wins: %d\n", *playerhealth, *playerwins);
+	printf("----------------------------\n");
+	printf("You approach a door.\n");
+
+}
+
 
 
 void PogoAM(void)
@@ -5090,7 +6372,6 @@ void hOsuna(void)
         printf("\nHAO\n");
 }
 
-
 //function prototype
 int getLuck(int luck[], int size);
 void JCgame(void)
@@ -5300,8 +6581,128 @@ void stanPush(void)
 
 void nnawshin()
 {
-	printf("N.N\n");
-}	
+    int choice;
+    int score = 0;
+    int steps = 0;
+    int randomEvent;
+
+    printf("\nN.N\n");
+    printf("Welcome to Room 18: The Lost Library\n");
+    printf("You are trapped inside a mysterious library.\n");
+    printf("Make 5 decisions to escape.\n");
+
+    while(steps < 5)
+    {
+        printf("\nDecision %d\n", steps + 1);
+
+        if(steps == 0)
+        {
+            printf("1. Walk to the glowing bookshelf\n");
+            printf("2. Walk to the dark hallway\n");
+            scanf("%d", &choice);
+
+            if(choice == 1)
+            {
+                printf("You found a lantern.\n");
+                score++;
+            }
+            else
+            {
+                printf("The hallway feels cold and empty.\n");
+            }
+        }
+
+        else if(steps == 1)
+        {
+            printf("1. Open an old book\n");
+            printf("2. Ignore the book\n");
+            scanf("%d", &choice);
+
+            randomEvent = rand() % 2;
+
+            if(choice == 1)
+            {
+                if(randomEvent == 0)
+                {
+                    printf("You found a secret clue inside the book.\n");
+                    score++;
+                }
+                else
+                {
+                    printf("Dust flies into your face.\n");
+                }
+            }
+            else
+            {
+                printf("You continue walking carefully.\n");
+            }
+        }
+
+        else if(steps == 2)
+        {
+            printf("1. Pick up a silver key\n");
+            printf("2. Pick up a map\n");
+            scanf("%d", &choice);
+
+            if(choice == 1 || choice == 2)
+            {
+                printf("You keep the item in your bag.\n");
+                score++;
+            }
+        }
+
+        else if(steps == 3)
+        {
+            printf("1. Climb the moving shelf\n");
+            printf("2. Run under the shelf\n");
+            scanf("%d", &choice);
+
+            if(choice == 1)
+            {
+                printf("You safely climb over the shelf.\n");
+                score++;
+            }
+            else
+            {
+                printf("The shelf almost crushes you.\n");
+            }
+        }
+
+        else if(steps == 4)
+        {
+            printf("1. Unlock the exit door\n");
+            printf("2. Kick the door open\n");
+            scanf("%d", &choice);
+
+            if(choice == 1)
+            {
+                printf("The key unlocks the door.\n");
+                score++;
+            }
+            else
+            {
+                printf("The door slowly opens.\n");
+            }
+        }
+
+        steps++;
+    }
+
+    printf("\nFinal Score: %d\n", score);
+
+    if(score >= 3)
+    {
+        printf("You escaped the Lost Library successfully!\n");
+    }
+    else
+    {
+        printf("You escaped, but the library stole your memories.\n");
+    }
+
+    printf("Returning to the main menu...\n");
+}
+
+
 
 void phas22(void)
 {
@@ -8415,79 +9816,6 @@ int iAmLazy(int choices)
   return option;
 }
 
-
-void stanPush(void)
-{
-        puts(" S J \n");
-
-        char *stanRooms[5] = {"forest", "cave", "river", "castle", "Milo's room" };
-
-        int stanVisits[5] = {0}, stanChoice, stanRandy;
-
-        do 
-	{
-
-        	printf("\n=== stanley's room ===\n");
-
-        	for(int i = 0; i < 5; i++) 
-		{
-	            	printf("%d. Enter %s\n", i + 1, stanRooms[i]);
-        	}
-
-        	printf("6. quit\n");
-
-        	printf("choose a room: ");
-        	scanf("%d", &stanChoice);
-
-        	if(stanChoice >= 1 && stanChoice <= 5) 
-		{
-
-        	    stanVisits[stanChoice - 1]++;
-
-		    printf("\nyou entered %s.\n", stanRooms[stanChoice - 1]);
-		    stanRandy = rand() % 3;
-
-            		if(stanRandy == 0) 
-			{
-                		printf("you found treasure\n");
-           		}
-            		else if(stanRandy == 1) 
-			{
-                		printf("a monster appeared\n");
-            		}
-            		else 
-			{
-                		printf("nothing happened\n");
-            		}
-
-        	}
-        	else if(stanChoice == 6) 
-		{
-
-            		printf("\n=== rooms visits ===\n");
-
-            		for(int i = 0; i < 5; i++) 
-			{
-
-                		printf("%s visited %d time(s)\n",
-                       		stanRooms[i],
-                       		stanVisits[i]);
-            		}
-
-            		printf("goodbye\n");
-        	}
-        	else 
-		{
-
-            		printf("invalid choice\n");
-        	}
-
-    	} while(stanChoice != 6);
-
-}
-
-
-
 void room31TwentyOneGame(void)
 {
 	printf("\nThe goal of the game is to get a hand closest to 21 without going over(bust) or else you'll lose.\n");
@@ -8701,4 +10029,243 @@ void room31DealerTurn(int used[], char deck[][30], int *dealerTotal,int dealerCa
 		printf("Dealer Busts!!!\n");
 	}
 }
+
+
+void josephhernandez(void)
+{
+	int currentmoney = 500;
+	int gamechoice;
+	int lever;
+	int blackjack;
+	int roulette;
+	int craps;
+	int chance[2] = {1 , 2}; //Represents a fifty percent chance
+	bool exit = false;
+	printf("You enter room 67 and see... A Casino?? Your goal is to win it big, and leave the Casino positive. Can you accomplish this?\n\n");
+	while (!exit)
+	{
+		printf("You are in the main lobby of the Casino, and see 4 different games you can play. Choose the game you would like to play, or exit:\n");
+		printf("Starting Money: $500\n");
+		printf("Current Money: $%i\n\n", currentmoney);
+		printf("1. Slot Machines\n");
+		printf("2. BlackJack\n");
+		printf("3. Roulette\n");
+		printf("4. Craps Table\n");
+		printf("5. Exit Casino\n\n");
+		printf("What is your choice?: ");
+		scanf("%i", &gamechoice);
+		while (gamechoice > 5 || gamechoice < 1)
+		{
+			printf("Invalid Choice, please input a number between 1 and 5:");
+			scanf("%i", &gamechoice);
+		}
+		switch(gamechoice)
+		{
+			case 1:
+				printf("You step up to the Slot Machines. There is a red, green, and blue lever to pull to play. Which one do you pull?\n\n");
+				printf("1. Red Lever\n");
+				printf("2. Green Lever\n");
+				printf("3. Blue Lever\n\n");
+				printf("What is your choice?: ");
+				scanf("%i", &lever);
+				printf("\n");
+				switch(lever)
+				{
+					case 1:
+						if (chance[rand() % 2] % 2 == 0)
+						{
+							printf("Congrats! You won some money, but the other levers might offer more\n");
+							printf("Money earned: $50\n\n");
+							currentmoney = currentmoney + 50;
+							printf("New Total: %i\n", currentmoney);
+						}
+						else
+						{
+							printf("Unfortunate! You lost this one.\n");
+							printf("Money lost: $50\n\n");
+							currentmoney = currentmoney - 50;
+							printf("New Total: %i\n", currentmoney);
+						}
+						break;
+					case 2:
+						if (chance[rand() % 2] % 2 == 0)
+						{
+							printf("Congrats! You won some money, this lever feels like a good middle ground between winning and losing\n");
+							printf("Money earned: $75\n\n");
+							currentmoney = currentmoney + 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						else
+						{
+							printf("Unfortunate! You lost this one.\n");
+							printf("Money lost: $75\n\n");
+							currentmoney = currentmoney - 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						break;
+					case 3:
+						if (chance[rand() % 2] % 2 == 0)
+						{
+							printf("Congrats! You won some money, and this lever feels like it offers the highest reward for your risk\n");
+							printf("Money earned: $100\n\n");
+							currentmoney = currentmoney + 100;
+							printf("New Total: %i\n", currentmoney);
+						}
+						else
+						{
+							printf("Unfortunate! You lost this one.\n");
+							printf("Money lost: $100\n\n");
+							currentmoney = currentmoney - 100;
+							printf("New Total: %i\n", currentmoney);
+						}
+						break;
+				}
+				break;
+			case 2:
+				printf("You approach the BlackJack table. The dealer reveals an ace, while you have a 16 (10 + 6). What do you do?\n\n");
+				printf("1. Hit\n");
+				printf("2. Stay\n\n");
+				printf("What is your choice?: ");
+				scanf("%i", &blackjack);
+				printf("\n");
+				switch(blackjack)
+				{
+					case 1:
+						if (chance[rand() % 2] % 2 == 0)
+						{
+							printf("Congrats! You hit a 5 and win with a 21!\n");
+							printf("Money earned: $75\n\n");
+							currentmoney = currentmoney + 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						else
+						{
+							printf("Unfortunate! You hit a face card and bust\n");
+							printf("Money lost: $75\n\n");
+							currentmoney = currentmoney - 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						break;
+					case 2:
+						if (chance[rand() % 2] % 2 == 0)
+						{
+							printf("Congrats! The dealer draws 4 cards, ending with a face card and busting\n");
+							printf("Money earned: $75\n\n");
+							currentmoney = currentmoney + 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						else
+						{
+							printf("Unfortunate! The dealer draws a face card and hits 21.\n");
+							printf("Money lost: $75\n\n");
+							currentmoney = currentmoney - 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						break;
+				}
+				break;
+			case 3:
+				printf("You approach the Roulette table. Your options are to bet on red, black, or the ultra rare green\n\n");
+				printf("1. Red\n");
+				printf("2. Black\n");
+				printf("3. Green\n\n");
+				printf("What is your choice?: ");
+				scanf("%i", &roulette);
+				printf("\n");
+				switch(roulette)
+				{
+					case 1:
+						if (chance[rand() % 2] % 2 == 0)
+						{
+							printf("Congrats! You won the 50/50\n");
+							printf("Money earned: $75\n\n");
+							currentmoney = currentmoney + 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						else
+						{
+							printf("Unfortunate! You lost the 50/50\n");
+							printf("Money lost: $75\n\n");
+							currentmoney = currentmoney - 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						break;
+					case 2:
+						if (chance[rand() % 2] % 2 == 0)
+						{
+							printf("Congrats! You won the 50/50\n");
+							printf("Money earned: $75\n\n");
+							currentmoney = currentmoney + 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						else
+						{
+							printf("Unfortunate! You lost the 50/50\n");
+							printf("Money lost: $75\n\n");
+							currentmoney = currentmoney - 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						break;
+					case 3:
+						if ((rand() % 100) % 10 == 0)
+						{
+							printf("WOAH! You actually hit the green. Heres a big payout\n");
+							printf("Money earned: $1000\n\n");
+							currentmoney = currentmoney + 1000;
+							printf("New Total: %i\n", currentmoney);
+						}
+						else
+						{
+							printf("Unfortunate! You didn't hit it big. Something tells me it might be worth to keep trying\n");
+							printf("Money lost: $75\n\n");
+							currentmoney = currentmoney - 75;
+							printf("New Total: %i\n", currentmoney);
+						}
+						break;
+				}
+				break;
+			case 4:
+				printf("You step up to the Craps table. You are betting on whether a 7 is rolled using both dice on the table.\n\n");
+				printf("1. A 7 is rolled\n");
+				printf("2. A 7 is not rolled\n\n");
+				printf("What is your choice?: ");
+				scanf("%i", &craps);
+				printf("\n");
+				switch(craps)
+				{
+					case 1:
+						printf("Congrats! You won the 50/50\n");
+						printf("Money earned: $75\n\n");
+						currentmoney = currentmoney + 75;
+						printf("New Total: %i\n", currentmoney);
+						break;
+					case 2:
+						printf("Unfortunate! You lost the 50/50\n");
+					 	printf("Money lost: $75\n\n");
+						currentmoney = currentmoney - 75;
+						printf("New Total: %i\n", currentmoney);
+						break;
+				}
+				break;
+			case 5:
+				exit = true;
+				break;
+		}
+	}
+	if (currentmoney > 500)
+		printf("Congratulations! You went positive.\n\n");
+	else if (currentmoney == 500)
+		printf("Did you even play?? You walked out with the same amount of money you walked in with. Try again!\n\n");
+	else
+		printf("Unfortunately you went negative, come try again!\n\n");
+}
+
+int skarkBay(void)
+{
+        srand(time(NULL));
+        int rando2 = 1 + rand()%10000000;
+
+        return rando2;
+}
+
 
